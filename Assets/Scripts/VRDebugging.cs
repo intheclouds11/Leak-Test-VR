@@ -7,7 +7,8 @@ public class VRDebugging : MonoBehaviour
     // [SerializeField] private GameObject[] XRControllersToToggle;
     // [SerializeField] private bool enableVRControllers;
     [SerializeField] private GameObject XRDeviceSim;
-
+    [SerializeField] private Transform XRRigTransform;
+    [SerializeField] private float HeightOffset;
 
     void Start()
     {
@@ -26,6 +27,14 @@ public class VRDebugging : MonoBehaviour
         else
         {
             Debug.Log("Case 2: No HMD detected");
+            UseHeightOffset();
         }
+    }
+
+    private void UseHeightOffset()
+    {
+        var XRRigPosition = XRRigTransform.position;
+        XRRigPosition = new Vector3(XRRigPosition.x, HeightOffset, XRRigPosition.z);
+        XRRigTransform.position = XRRigPosition;
     }
 }

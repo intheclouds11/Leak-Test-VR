@@ -21,11 +21,11 @@ public class HeadMountedTrigger : MonoBehaviour
         EnableVRControls();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // Follow HMD
-        gameObject.transform.position = hmdTransform.position + faceOffset;
-        gameObject.transform.rotation = hmdTransform.rotation;
+        transform.position = hmdTransform.position + faceOffset;
+        transform.rotation = hmdTransform.rotation;
     }
 
     void EnableVRControls()
