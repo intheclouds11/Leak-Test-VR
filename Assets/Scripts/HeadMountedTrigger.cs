@@ -4,25 +4,26 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+[ExecuteInEditMode]
 
 public class HeadMountedTrigger : MonoBehaviour
 {
-    private Transform hmdTransform;
+    [SerializeField] Transform hmdTransform;
     [SerializeField] Vector3 faceOffset;
     [SerializeField] InputActionAsset playerControlsVR;
     private InputAction rhTrigger;
     [SerializeField] private TextMeshProUGUI procedureText;
     private int triggerCount;
+    [SerializeField] private ParticleSystem fireworks;
 
     void Start()
     {
-        hmdTransform = FindObjectOfType<Camera>().transform;
         EnableVRControls();
     }
 
-    // Follow HMD
     void FixedUpdate()
     {
+        // Follow HMD
         gameObject.transform.position = hmdTransform.position + faceOffset;
         gameObject.transform.rotation = hmdTransform.rotation;
     }
@@ -40,6 +41,7 @@ public class HeadMountedTrigger : MonoBehaviour
         triggerCount++;
         Debug.Log("Triggered");
         procedureText.text = $"Triggered {triggerCount} times";
+        fireworks.Play();
     }
 
     private void OnTriggerEnter(Collider other)

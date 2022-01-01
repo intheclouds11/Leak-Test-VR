@@ -357,17 +357,6 @@
                 },
                 {
                     "name": "",
-                    "id": "ff40926c-9738-4dd2-9cfa-9e2a8758112a",
-                    "path": "<XRController>/joystick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "acdf9550-5529-4ff7-8558-73ecdf0d75bd",
                     "path": "<XRController>{LeftHand}/*",
                     "interactions": "",
