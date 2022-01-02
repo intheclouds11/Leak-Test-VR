@@ -4,8 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Hose
   - RightHand
+  - Out Trigger
+  - In Trigger
+  - Hose 1
+  - Hose 2
   layers:
   - Default
   - TransparentFX
