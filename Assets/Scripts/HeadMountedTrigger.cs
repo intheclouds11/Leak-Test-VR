@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class HeadMountedTrigger : MonoBehaviour
 {
-    [SerializeField] Transform hmdTransform;
+    [SerializeField] Transform HMDTransform;
     [SerializeField] Vector3 faceOffset;
     [SerializeField] InputActionAsset playerControlsVR;
     private InputAction rhTrigger;
@@ -24,8 +24,8 @@ public class HeadMountedTrigger : MonoBehaviour
     void Update()
     {
         // Follow HMD
-        transform.position = hmdTransform.position + faceOffset;
-        transform.rotation = hmdTransform.rotation;
+        transform.position = HMDTransform.position + faceOffset;
+        transform.rotation = HMDTransform.rotation;
     }
 
     void EnableVRControls()

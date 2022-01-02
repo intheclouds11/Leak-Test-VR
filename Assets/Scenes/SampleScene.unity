@@ -2131,7 +2131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c58303d73b47746b6090d127997c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hmdTransform: {fileID: 615549865}
+  HMDTransform: {fileID: 615549865}
   faceOffset: {x: 0, y: 0.12, z: 0}
   playerControlsVR: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   procedureText: {fileID: 1110255465}
@@ -9624,6 +9624,7 @@ GameObject:
   - component: {fileID: 918814934}
   - component: {fileID: 918814933}
   - component: {fileID: 918814932}
+  - component: {fileID: 918814935}
   m_Layer: 0
   m_Name: Tablet
   m_TagString: Untagged
@@ -9760,7 +9761,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918814931}
-  m_LocalRotation: {x: -0, y: 0.36058956, z: -0, w: 0.93272465}
+  m_LocalRotation: {x: 0.030666724, y: -0.48702696, z: 0.017114533, w: 0.8726806}
   m_LocalPosition: {x: 3.205099, y: 0.265, z: -1.977179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9769,6 +9770,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 42.273, z: 0}
+--- !u!114 &918814935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918814931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfeca170d4a0b94fb8d59f91d08a6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &930522416
 GameObject:
   m_ObjectHideFlags: 0
@@ -11876,7 +11890,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.05e-43, y: 4.0286167e-11, z: 6.7e-44, w: 1.924858e-16}
+  m_BoundingSphereOverride: {x: 4.5905e-41, y: 0, z: 0, w: 1470.5479}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
