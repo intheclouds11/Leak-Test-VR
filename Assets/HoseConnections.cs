@@ -1,26 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HoseConnections : MonoBehaviour
 {
+    private Transform thisTransform;
+    private Transform hoseTransform;
     private GameObject hose1;
-    private bool hose1Connected;
+    [SerializeField] Vector3 hose1Offset;
+    public bool hose1Connected;
     private GameObject hose2;
-    private bool hose2Connected;
+    [SerializeField] Vector3 hose2Offset;
+    public bool hose2Connected;
 
-    private void Update()
+    private void Start()
     {
-        if (hose1Connected)
-        {
-            ConnectionFollow(hose1);
-        }
-
-        if (hose2Connected)
-        {
-            ConnectionFollow(hose2);
-        }
+        thisTransform = this.transform;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,12 +34,34 @@ public class HoseConnections : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (hose1Connected)
+        {
+            ConnectionFollow(hose1);
+        }
+
+        if (hose2Connected)
+        {
+            ConnectionFollow(hose2);
+        }
+    }
+
+
     void ConnectionFollow(GameObject hose)
     {
-        var hoseTransform = hose.transform.parent;
-        var thisTransform = this.transform;
-        hoseTransform.position = thisTransform.position;
-        hoseTransform.rotation = thisTransform.rotation;
+        hoseTransform = hose.transform.parent;
+        if (hose == hose1)
+        {
+            hoseTransform.position = thisTransform.position + hose1Offset;
+            hoseTransform.eulerAngles = thisTransform.eulerAngles;
+        }
+
+        else
+        {
+            hoseTransform.position = thisTransform.position + hose2Offset;
+            hoseTransform.eulerAngles = thisTransform.eulerAngles + new Vector3(0,180,0);
+        }
     }
 
     private void OnTriggerExit(Collider other)

@@ -12,7 +12,7 @@ public class HeadMountedTrigger : MonoBehaviour
     [SerializeField] Vector3 faceOffset;
     [SerializeField] InputActionAsset playerControlsVR;
     private InputAction rhTrigger;
-    [SerializeField] private TextMeshProUGUI procedureText;
+    [SerializeField] TextMeshProUGUI procedureText;
     private int triggerCount;
     [SerializeField] private ParticleSystem fireworks;
 
