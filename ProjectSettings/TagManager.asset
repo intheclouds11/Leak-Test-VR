@@ -9,6 +9,7 @@ TagManager:
   - In Trigger
   - Hose 1
   - Hose 2
+  - Valve Indicator
   layers:
   - Default
   - TransparentFX

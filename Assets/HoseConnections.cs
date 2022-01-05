@@ -34,7 +34,7 @@ public class HoseConnections : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Update() // try using events?
     {
         if (hose1Connected)
         {
@@ -64,7 +64,7 @@ public class HoseConnections : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) // convert this into a controller input
     {
         if (this.name == "Inlet Trigger" && other.CompareTag("Hose 1"))
         {
