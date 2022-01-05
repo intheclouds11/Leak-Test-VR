@@ -10,6 +10,8 @@ TagManager:
   - Hose 1
   - Hose 2
   - Valve Indicator
+  - Leak
+  - Leak Detector
   layers:
   - Default
   - TransparentFX

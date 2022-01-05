@@ -9,18 +9,7 @@ public class ProcedureTextUpdater : MonoBehaviour
 
     [SerializeField] private HoseConnections inletTrigger;
     [SerializeField] private HoseConnections outletTrigger;
+    [SerializeField] private ValveTrigger valveTrigger;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (inletTrigger.hose1Connected && outletTrigger.hose2Connected)
-        {
-            procedureText.text = "Hoses connected!";
-        }
-    }
 }

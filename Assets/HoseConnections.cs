@@ -11,6 +11,8 @@ public class HoseConnections : MonoBehaviour
     private GameObject hose2;
     [SerializeField] Vector3 hose2Offset;
     public bool hose2Connected;
+    
+    [SerializeField] private TextMeshProUGUI procedureText;
 
     private void Start()
     {
@@ -21,20 +23,22 @@ public class HoseConnections : MonoBehaviour
     {
         if (this.name == "Inlet Trigger" && other.CompareTag("Hose 1"))
         {
-            Debug.Log("Hose 1 Connected");
+            Debug.Log("Hose 1 connected");
             hose1Connected = true;
             hose1 = other.gameObject;
+            procedureText.text = "Hose 1 connected!";
         }
 
         if (this.name == "Outlet Trigger" && other.CompareTag("Hose 2"))
         {
-            Debug.Log("Hose 2 Connected");
+            Debug.Log("Hose 2 connected");
             hose2Connected = true;
             hose2 = other.gameObject;
+            procedureText.text = "Hose 2 connected!";
         }
     }
 
-    private void Update() // try using events?
+    private void FixedUpdate() // try using events?
     {
         if (hose1Connected)
         {
