@@ -21,6 +21,10 @@ public class LeakDetector : MonoBehaviour
         {
             procedureText.text = "Leak detected!";
         }
+        if (other.CompareTag("Leak") && !valveAtPressure)
+        {
+            procedureText.text = "No pressure!";
+        }
     }
 
     private void OnTriggerExit(Collider other)

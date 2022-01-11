@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HoseConnections : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class HoseConnections : MonoBehaviour
 
     void ConnectionFollow(GameObject hose)
     {
-        hoseTransform = hose.transform.parent;
+        hoseTransform = hose.transform;
         if (hose == hose1)
         {
             hoseTransform.position = thisTransform.position + hose1Offset;
@@ -64,7 +65,7 @@ public class HoseConnections : MonoBehaviour
         else
         {
             hoseTransform.position = thisTransform.position + hose2Offset;
-            hoseTransform.eulerAngles = thisTransform.eulerAngles + new Vector3(0,180,0);
+            hoseTransform.eulerAngles = thisTransform.eulerAngles + new Vector3(0, 180, 0);
         }
     }
 

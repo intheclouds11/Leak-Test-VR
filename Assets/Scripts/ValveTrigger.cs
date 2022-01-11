@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ValveTrigger : MonoBehaviour
 {
     public bool valveAtPressure;
-    [SerializeField] HoseConnections hose1Connections;
-    [SerializeField] HoseConnections hose2Connections;
+    [SerializeField] HoseConnections hose1Connection;
+    [SerializeField] HoseConnections hose2Connection;
     public bool hose1Connected;
     public bool hose2Connected;
 
@@ -16,8 +17,8 @@ public class ValveTrigger : MonoBehaviour
     
     private void FixedUpdate() // look into using events instead of Update
     {
-        hose1Connected = hose1Connections.hose1Connected;
-        hose2Connected = hose2Connections.hose2Connected;
+        hose1Connected = hose1Connection.hose1Connected;
+        hose2Connected = hose2Connection.hose2Connected;
     }
 
     private void OnTriggerEnter(Collider other)
