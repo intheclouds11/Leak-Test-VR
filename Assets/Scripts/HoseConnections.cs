@@ -1,86 +1,117 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Animations;
+using UnityEngine.Serialization;
 
 public class HoseConnections : MonoBehaviour
 {
-    private Transform thisTransform;
-    private Transform hoseTransform;
-    private GameObject hose1;
-    [SerializeField] Vector3 hose1Offset;
-    public bool hose1Connected;
-    private GameObject hose2;
-    [SerializeField] Vector3 hose2Offset;
-    public bool hose2Connected;
-    
+    private Transform _hoseTransform;
+    private GameObject _hoseGO;
+    public bool hoseConnected;
+    private GameObject _bomGO;
+    public bool bomConnected;
+    private GameObject _capGO;
+    public bool capConnected;
+    public ValveTrigger valveTrigger;
+
     [SerializeField] private TextMeshProUGUI procedureText;
 
-    private void Start()
-    {
-        thisTransform = this.transform;
-    }
+    [SerializeField] private BubbleOMeter _bubbleOMeter;
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        if (this.name == "Inlet Trigger" && other.CompareTag("Hose 1"))
+        if (this.name == "Inlet Trigger" && other.CompareTag("Hose"))
         {
-            Debug.Log("Hose 1 connected");
-            hose1Connected = true;
-            hose1 = other.gameObject;
-            procedureText.text = "Hose 1 connected!";
+            Debug.Log("Hose connected", this);
+            hoseConnected = true;
+            _hoseGO = other.gameObject;
+            procedureText.text = "Hose connected!";
         }
 
-        if (this.name == "Outlet Trigger" && other.CompareTag("Hose 2"))
+        if (this.name == "Outlet Trigger" && other.CompareTag("Bubble-O-Meter"))
         {
-            Debug.Log("Hose 2 connected");
-            hose2Connected = true;
-            hose2 = other.gameObject;
-            procedureText.text = "Hose 2 connected!";
-        }
-    }
-
-    private void FixedUpdate() // try using events?
-    {
-        if (hose1Connected)
-        {
-            ConnectionFollow(hose1);
+            Debug.Log("Bubble-O-Meter connected", this);
+            bomConnected = true;
+            _bomGO = other.gameObject;
+            procedureText.text = "Bubble-O-Meter connected!";
         }
 
-        if (hose2Connected)
+        if (this.name == "Outlet Trigger" && other.CompareTag("Cap") && !bomConnected)
         {
-            ConnectionFollow(hose2);
+            Debug.Log("Cap connected", this);
+            capConnected = true;
+            _capGO = other.gameObject;
+            procedureText.text = "Cap connected!";
         }
     }
 
-
-    void ConnectionFollow(GameObject hose)
+    private void Update()
     {
-        hoseTransform = hose.transform;
-        if (hose == hose1)
+        if (hoseConnected)
         {
-            hoseTransform.position = thisTransform.position + hose1Offset;
-            hoseTransform.eulerAngles = thisTransform.eulerAngles;
+            ConnectionFollow(_hoseGO);
         }
 
-        else
+        if (bomConnected)
         {
-            hoseTransform.position = thisTransform.position + hose2Offset;
-            hoseTransform.eulerAngles = thisTransform.eulerAngles + new Vector3(0, 180, 0);
+            ConnectionFollow(_bomGO);
+        }
+
+        if (capConnected)
+        {
+            ConnectionFollow(_capGO);
         }
     }
 
-    private void OnTriggerExit(Collider other) // convert this into a controller input
+
+    void ConnectionFollow(GameObject obj)
     {
-        if (this.name == "Inlet Trigger" && other.CompareTag("Hose 1"))
+        ParentConstraint parentConstraint = obj.GetComponent<ParentConstraint>();
+        parentConstraint.constraintActive = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (this.name == "Inlet Trigger" && other.CompareTag("Hose"))
         {
-            Debug.Log("Hose 1 Disconnected");
-            hose1Connected = false;
+            Debug.Log("Hose Disconnected");
+            hoseConnected = false;
+            ParentConstraint parentConstraint = other.GetComponent<ParentConstraint>();
+            parentConstraint.constraintActive = false;
+            
+            if (valveTrigger.valveAtLeakPressure || valveTrigger.valveAtProofPressure)
+            {
+                _bubbleOMeter.StopBubbleUp();
+                Debug.Log("Disconnected while under pressure!");
+            }
         }
 
-        if (this.name == "Outlet Trigger" && other.CompareTag("Hose 2"))
+        if (this.name == "Outlet Trigger" && other.CompareTag("Bubble-O-Meter"))
         {
-            Debug.Log("Hose 2 Disconnected");
-            hose2Connected = false;
+            Debug.Log("Bubble-O-Meter Disconnected");
+            bomConnected = false;
+            ParentConstraint parentConstraint = other.GetComponent<ParentConstraint>();
+            parentConstraint.constraintActive = false;
+            
+            if (valveTrigger.valveAtLeakPressure || valveTrigger.valveAtProofPressure)
+            {
+                _bubbleOMeter.StopBubbleUp();
+                Debug.Log("Disconnected while under pressure!");
+            }
+        }
+
+        if (this.name == "Outlet Trigger" && other.CompareTag("Cap"))
+        {
+            Debug.Log("Cap Disconnected");
+            capConnected = false;
+            ParentConstraint parentConstraint = other.GetComponent<ParentConstraint>();
+            parentConstraint.constraintActive = false;
+            
+            if (valveTrigger.valveAtLeakPressure || valveTrigger.valveAtProofPressure)
+            {
+                Debug.Log("Disconnected while under pressure!");
+            }
         }
     }
 }

@@ -36,27 +36,27 @@ public class HeadMountedTrigger : MonoBehaviour
         rhTrigger.Enable();
     }
 
-    void TriggerColliderInteraction(InputAction.CallbackContext context)
+    void ActivateHeadMountedInteraction(InputAction.CallbackContext context)
     {
         triggerCount++;
-        Debug.Log("Triggered");
+        Debug.Log("Triggered", this);
         procedureText.text = $"Triggered {triggerCount} times";
         fireworks.Play();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("RightHand"))
+        if (other.CompareTag("Right Hand"))
         {
-            rhTrigger.performed += TriggerColliderInteraction;
+            rhTrigger.performed += ActivateHeadMountedInteraction;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("RightHand"))
+        if (other.CompareTag("Right Hand"))
         {
-            rhTrigger.performed -= TriggerColliderInteraction;
+            rhTrigger.performed -= ActivateHeadMountedInteraction;
         }
     }
 }

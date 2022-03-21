@@ -7,21 +7,21 @@ using UnityEngine;
 public class LeakDetector : MonoBehaviour
 {
     [SerializeField] private ValveTrigger valveTrigger;
-    private bool valveAtPressure;
+    private bool valveAtLeakPressure;
     [SerializeField] private TextMeshProUGUI procedureText;
     
     private void FixedUpdate()
     {
-        valveAtPressure = valveTrigger.valveAtPressure;
+        valveAtLeakPressure = valveTrigger.valveAtLeakPressure;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Leak") && valveAtPressure)
+        if (other.CompareTag("Leak") && valveAtLeakPressure)
         {
             procedureText.text = "Leak detected!";
         }
-        if (other.CompareTag("Leak") && !valveAtPressure)
+        if (other.CompareTag("Leak") && !valveAtLeakPressure)
         {
             procedureText.text = "No pressure!";
         }
@@ -29,7 +29,7 @@ public class LeakDetector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Leak") && valveAtPressure)
+        if (other.CompareTag("Leak") && valveAtLeakPressure)
         {
             procedureText.text = "Detecting leak...";
         }

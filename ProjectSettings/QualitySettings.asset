@@ -61,7 +61,7 @@ QualitySettings:
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
-    billboardsFaceCameraPosition: 0
+    billboardsFaceCameraPosition: 1
     vSyncCount: 1
     lodBias: 0.7
     maximumLODLevel: 0
@@ -76,7 +76,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: d847b876476d3d6468f5dfcd34266f96, type: 2}
+    customRenderPipeline: {fileID: 11400000, guid: ebb3b2a811da3e0499ff1cd5a5a6fe6f, type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: High

@@ -4,23 +4,29 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - RightHand
-  - Out Trigger
-  - In Trigger
-  - Hose 1
-  - Hose 2
-  - Valve Indicator
   - Leak
   - Leak Detector
+  - VVM1
+  - Hand
+  - Bubble-O-Meter
+  - Hose
+  - Cap
+  - Hose 1
+  - Hose 2
+  - Leak Pressure
+  - Proof Pressure
+  - Valve Position
+  - Right Hand
+  - Zero Pressure
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Direct Grab
   - Water
   - UI
-  - 
-  - 
+  - Ray Grab
+  - Head
   - 
   - 
   - 
